@@ -6,13 +6,19 @@ import 'package:desafio_mobile/constants/size_config.dart';
 import '../views/login_form.dart';
 import '../views/register_form.dart';
 
-class CardLogin extends StatelessWidget {
+class CardLogin extends StatefulWidget {
   const CardLogin({super.key});
+
+  @override
+  State<CardLogin> createState() => _CardLoginState();
+}
+
+class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
+  int _selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.heightMultiplier * 50,
       width: SizeConfig.screenWidth * 0.85,
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
@@ -22,36 +28,45 @@ class CardLogin extends StatelessWidget {
           topRight: Radius.circular(12),
         ),
       ),
-      child: DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            const TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              dividerColor: Colors.transparent,
-              labelColor: AppTheme.corFonteDestaque,
-              unselectedLabelColor: AppTheme.corFonte,
-              indicatorColor: AppTheme.corFonteDestaque,
-              labelStyle: TextStyle(fontWeight: FontWeight.bold),
-              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-              indicatorPadding: EdgeInsets.only(top: -2),
-              tabs: [
-                Tab(text: Strings.login),
-                Tab(text: Strings.register),
-              ],
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TabBar(
+            onTap: (index) {
+              FocusScope.of(context).unfocus();
+              setState(() {
+                _selectedTab = index;
+              });
+            },
+            controller: TabController(
+              length: 2,
+              vsync: this,
+              initialIndex: _selectedTab,
             ),
-            SizedBox(height: SizeConfig.heightMultiplier * 2),
-            const Expanded(
-              child: TabBarView(
-                children: [
-                  LoginForm(),
-                  RegisterForm(),
-                ],
-              ),
-            ),
-          ],
-        ),
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            dividerColor: Colors.transparent,
+            labelColor: AppTheme.corFonteDestaque,
+            unselectedLabelColor: AppTheme.corFonte,
+            indicatorColor: AppTheme.corFonteDestaque,
+            labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+            indicatorPadding: const EdgeInsets.only(top: -2),
+            tabs: const [
+              Tab(text: Strings.login),
+              Tab(text: Strings.register),
+            ],
+          ),
+          const SizedBox(height: 16),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            transitionBuilder: (child, animation) =>
+                FadeTransition(opacity: animation, child: child),
+            child: _selectedTab == 0
+                ? const LoginForm(key: ValueKey(0))
+                : const RegisterForm(key: ValueKey(1)),
+          ),
+        ],
       ),
     );
   }

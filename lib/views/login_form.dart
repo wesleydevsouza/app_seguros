@@ -35,15 +35,6 @@ class _LoginFormState extends State<LoginForm> {
         ),
         const LoginOptionsBlock(),
         const SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.greenAccent[700],
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(20),
-          ),
-          child: const Icon(Icons.arrow_forward, color: Colors.white),
-        ),
       ],
     );
   }
