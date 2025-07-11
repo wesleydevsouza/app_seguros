@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/default_textfield.dart';
+import 'default_textfield.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -42,16 +42,6 @@ class _RegisterFormState extends State<RegisterForm> {
             textInputType: TextInputType.visiblePassword,
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.greenAccent[700],
-              shape: const StadiumBorder(),
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            ),
-            child:
-                const Text("Cadastrar", style: TextStyle(color: Colors.white)),
-          ),
         ],
       ),
     );

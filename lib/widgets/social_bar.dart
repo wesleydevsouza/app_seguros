@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../constants/images.dart';
 import '../constants/size_config.dart';
 import '../constants/strings.dart';
 import '../constants/styling.dart';
@@ -16,29 +18,30 @@ class SocialBar extends StatelessWidget {
       children: [
         const Text(
           Strings.social,
-          style: AppTheme.textoGeral,
+          style: AppTheme.labelText,
         ),
         SizedBox(height: SizeConfig.heightMultiplier * 2),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.g_mobiledata,
-              size: 40,
-              color: Colors.white,
+            SvgPicture.asset(
+              Images.icoGoogle,
+              height: SizeConfig.heightMultiplier * 3,
+              color: AppTheme.corContainer,
             ),
-            SizedBox(width: SizeConfig.widthMultiplier * 1),
-            const Icon(
-              Icons.facebook,
-              size: 30,
-              color: Colors.white,
+            SizedBox(width: SizeConfig.widthMultiplier * 5),
+            SvgPicture.asset(
+              Images.icoFb,
+              height: SizeConfig.heightMultiplier * 3,
+              color: AppTheme.corContainer,
             ),
-            SizedBox(width: SizeConfig.widthMultiplier * 1),
-            const Icon(
-              Icons.alternate_email,
-              size: 30,
-              color: Colors.white,
+            SizedBox(width: SizeConfig.widthMultiplier * 5),
+            SvgPicture.asset(
+              Images.icoTwitter,
+              height: SizeConfig.heightMultiplier * 3,
+              color: AppTheme.corContainer,
             ),
+            SizedBox(width: SizeConfig.widthMultiplier * 5),
           ],
         ),
       ],

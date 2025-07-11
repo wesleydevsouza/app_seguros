@@ -3,8 +3,8 @@ import 'package:desafio_mobile/constants/styling.dart';
 import 'package:desafio_mobile/constants/strings.dart';
 import 'package:desafio_mobile/constants/size_config.dart';
 
-import '../views/login_form.dart';
-import '../views/register_form.dart';
+import 'login_form.dart';
+import 'register_form.dart';
 
 class CardLogin extends StatefulWidget {
   const CardLogin({super.key});
@@ -66,6 +66,7 @@ class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
                 ? const LoginForm(key: ValueKey(0))
                 : const RegisterForm(key: ValueKey(1)),
           ),
+          SizedBox(height: SizeConfig.heightMultiplier * 2),
         ],
       ),
     );

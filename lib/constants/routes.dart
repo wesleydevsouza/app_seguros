@@ -1,7 +1,7 @@
 import 'package:desafio_mobile/views/mock.dart';
 import 'package:flutter/material.dart';
 
-import '../views/login.dart';
+import '../views/login_view.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
