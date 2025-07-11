@@ -1,10 +1,10 @@
 import 'package:desafio_mobile/constants/background.dart';
 import 'package:desafio_mobile/constants/size_config.dart';
 import 'package:desafio_mobile/constants/styling.dart';
+import 'package:desafio_mobile/widgets/card_login.dart';
+import 'package:desafio_mobile/widgets/social_bar.dart';
 import 'package:flutter/material.dart';
 import '../constants/strings.dart';
-import 'login_form.dart';
-import 'register_form.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -26,13 +26,13 @@ class _LoginState extends State<Login> {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 30),
+              SizedBox(height: SizeConfig.heightMultiplier * 2),
               const Text(
                 Strings.name,
                 textAlign: TextAlign.center,
                 style: AppTheme.titulo,
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: SizeConfig.heightMultiplier * 1),
               const Text(
                 Strings.welcome,
                 textAlign: TextAlign.center,
@@ -43,54 +43,11 @@ class _LoginState extends State<Login> {
                 textAlign: TextAlign.center,
                 style: AppTheme.textoGeral,
               ),
-              const SizedBox(height: 30),
-              Container(
-                height: SizeConfig.heightMultiplier * 50,
-                width: SizeConfig.screenWidth * 0.85,
-                padding: const EdgeInsets.all(16),
-                decoration: const BoxDecoration(
-                  color: AppTheme.corCard,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
-                ),
-                child: const DefaultTabController(
-                  length: 2,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        labelColor: Colors.green,
-                        unselectedLabelColor: Colors.grey,
-                        indicatorColor: Colors.green,
-                        tabs: [
-                          Tab(text: "Entrar"),
-                          Tab(text: "Cadastrar"),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            LoginForm(),
-                            RegisterForm(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.g_mobiledata, size: 40),
-                  SizedBox(width: 20),
-                  Icon(Icons.facebook, size: 30),
-                  SizedBox(width: 20),
-                  Icon(Icons.alternate_email, size: 30),
-                ],
-              ),
+              SizedBox(height: SizeConfig.heightMultiplier * 2),
+              const CardLogin(),
+              SizedBox(height: SizeConfig.heightMultiplier * 2),
+              const SocialBar(),
+              SizedBox(height: SizeConfig.heightMultiplier * 2),
             ],
           ),
         ),

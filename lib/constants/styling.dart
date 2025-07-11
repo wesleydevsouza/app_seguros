@@ -8,8 +8,7 @@ class AppTheme {
   ], begin: Alignment.topLeft, end: Alignment.bottomRight);
 
   static const Color corFonte = Color(0xFFFFFAFA);
-  static const Color corFonte2 = Colors.black;
-  static const Color corFonte3 = Color(0xFF929292);
+  static const Color corFonteDestaque = Color(0xFF32a28c);
   static const Color corTituloDark = Color(0xFF133E44);
   static const Color corTituloLight = Color(0xFFF8FCF6);
 
@@ -42,13 +41,13 @@ class AppTheme {
     fontSize: 12,
   );
 
-  static const TextStyle tituloLight = TextStyle(
-    color: Color(0xFFE2E2E2),
-    fontWeight: FontWeight.normal,
-    fontSize: 14,
+  static const TextStyle menuBold = TextStyle(
+    color: corFonte,
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
   );
 
-  static const TextStyle subTituloLight = TextStyle(
+  static const TextStyle menuLight = TextStyle(
     color: Color(0xFFE2E2E2),
     fontWeight: FontWeight.normal,
     fontSize: 14,
@@ -56,9 +55,9 @@ class AppTheme {
 
   static const TextTheme lightTextTheme = TextTheme(
     titleLarge: titulo,
-    titleMedium: tituloLight,
+    titleMedium: menuBold,
     displayLarge: subTitulo,
-    displayMedium: subTituloLight,
+    displayMedium: menuLight,
     bodyLarge: textoGeral,
     labelLarge: labelText,
   );

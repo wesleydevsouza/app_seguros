@@ -1,6 +1,7 @@
 import 'package:desafio_mobile/widgets/login_options_block.dart';
 import 'package:desafio_mobile/widgets/remember_login.dart';
 import 'package:flutter/material.dart';
+import '../constants/strings.dart';
 import '../constants/styling.dart';
 import '../widgets/button_forgot_password.dart';
 import '../widgets/default_textfield.dart';
@@ -43,9 +44,6 @@ class _LoginFormState extends State<LoginForm> {
           ),
           child: const Icon(Icons.arrow_forward, color: Colors.white),
         ),
-        const SizedBox(height: 20),
-        const Text("Acesse através das redes sociais"),
-        const SizedBox(height: 10),
       ],
     );
   }

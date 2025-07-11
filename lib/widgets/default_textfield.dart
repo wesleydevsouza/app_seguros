@@ -48,24 +48,11 @@ class DefaultTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppTheme.corContainer,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            // spreadRadius: 3,
-            blurRadius: 2,
-            offset: const Offset(
-              3,
-              3,
-            ),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(26),
       ),
       child: TextFormField(
         textAlign: TextAlign.center,
-        style: AppTheme.textoGeral.copyWith(
-          color: Colors.black,
-        ),
+        style: AppTheme.textoGeral,
         controller: controller,
         focusNode: focusNode,
         keyboardType: textInputType,
@@ -79,34 +66,34 @@ class DefaultTextField extends StatelessWidget {
             vertical: SizeConfig.heightMultiplier * 2,
             horizontal: SizeConfig.heightMultiplier * 2,
           ),
-          labelText: label,
           prefixText: prefix,
-          hintText: hintText,
+          hintText: hintText ?? label,
           counterText: "",
           hintStyle: const TextStyle(
             color: AppTheme.corFonte,
+            fontWeight: FontWeight.normal,
           ),
-          labelStyle: AppTheme.textoGeral,
+          alignLabelWithHint: true,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: activeBorderColor ?? AppTheme.corBorda, width: 3.5),
-            borderRadius: const BorderRadius.all(Radius.circular(18)),
+            borderRadius: const BorderRadius.all(Radius.circular(26)),
           ),
           disabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(18)),
+            borderRadius: BorderRadius.all(Radius.circular(26)),
             borderSide: BorderSide(color: Colors.grey, width: 2.0),
           ),
           errorBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(18)),
+            borderRadius: BorderRadius.all(Radius.circular(26)),
             borderSide: BorderSide(color: Colors.red, width: 2.0),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(18)),
+            borderRadius: const BorderRadius.all(Radius.circular(26)),
             borderSide: BorderSide(
                 color: disabledBorderColor ?? AppTheme.corBorda, width: 2.0),
           ),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(18)),
+            borderRadius: BorderRadius.all(Radius.circular(26)),
           ),
           filled: true,
           fillColor: AppTheme.corCard,
