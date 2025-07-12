@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Seguradora',
         theme: AppTheme.appTheme,
-        initialRoute: '/login',
+        initialRoute: '/home',
         onGenerateRoute: RouteGenerator.generateRoute,
         navigatorKey: navigatorKey,
       );

@@ -1,3 +1,4 @@
+import 'package:desafio_mobile/constants/size_config.dart';
 import 'package:desafio_mobile/widgets/login_options_block.dart';
 import 'package:flutter/material.dart';
 import '../widgets/default_textfield.dart';
@@ -23,14 +24,13 @@ class _LoginFormState extends State<LoginForm> {
           label: 'CPF',
           textInputType: TextInputType.number,
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: SizeConfig.heightMultiplier * 1),
         DefaultTextField(
           controller: senhaController,
           label: 'Senha',
           textInputType: TextInputType.visiblePassword,
         ),
         const LoginOptionsBlock(),
-        const SizedBox(height: 10),
       ],
     );
   }

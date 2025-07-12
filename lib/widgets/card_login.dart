@@ -57,7 +57,7 @@ class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
               Tab(text: Strings.register),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: SizeConfig.heightMultiplier * 2),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             transitionBuilder: (child, animation) =>

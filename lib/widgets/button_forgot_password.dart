@@ -13,7 +13,7 @@ class ButtonForgotPass extends StatelessWidget {
       onPressed: () {},
       child: Text(
         "Esqueceu a senha?",
-        style: AppTheme.labelText.copyWith(color: Colors.blue),
+        style: AppTheme.labelText.copyWith(color: AppTheme.corFonteDestaque),
       ),
     );
   }

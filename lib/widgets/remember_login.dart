@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../constants/size_config.dart';
 import '../constants/styling.dart';
 
 class RememberLogin extends StatefulWidget {
@@ -27,13 +24,17 @@ class _RememberLoginState extends State<RememberLogin> {
             });
           },
           side: const BorderSide(
-            color: AppTheme.corFonte,
+            color: AppTheme.corFonteDestaque,
             width: 2,
           ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32),
+          ),
+          activeColor: AppTheme.corFonteDestaque,
           visualDensity: const VisualDensity(horizontal: -2.0, vertical: -2.0),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
-        Text(
+        const Text(
           "Lembrar Sempre",
           style: AppTheme.labelText,
         ),

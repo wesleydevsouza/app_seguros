@@ -7,6 +7,18 @@ class AppTheme {
     Color(0xFFece178),
   ], begin: Alignment.topLeft, end: Alignment.bottomRight);
 
+  static LinearGradient btnGradient = const LinearGradient(colors: [
+    Color(0xFF32a28c),
+    Color(0xFF4dae83),
+    Color(0xFFece178),
+  ], begin: Alignment.topCenter, end: Alignment.bottomCenter);
+
+  static LinearGradient barGradient = const LinearGradient(colors: [
+    Color(0xFF32a28c),
+    Color(0xFF4dae83),
+    Color(0xFFece178),
+  ], begin: Alignment.centerLeft, end: Alignment.centerRight);
+
   static const Color corFonte = Color(0xFFFFFAFA);
   static const Color corFonteDestaque = Color(0xFF32a28c);
   static const Color corTituloDark = Color(0xFF133E44);
@@ -14,7 +26,7 @@ class AppTheme {
 
   static const Color corContainer = Color(0xFFF8FCF6);
   static const Color corBackground = Color(0xff22202b);
-  static const Color corCard = Color(0xff1d1c2c);
+  static const Color corCard = Color(0xff292838);
   static const Color corBorda = Color(0xff8d8c9c);
 
   static const TextStyle titulo = TextStyle(

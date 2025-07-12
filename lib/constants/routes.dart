@@ -1,6 +1,6 @@
-import 'package:desafio_mobile/views/mock.dart';
 import 'package:flutter/material.dart';
 
+import '../views/home_view.dart';
 import '../views/login_view.dart';
 
 class RouteGenerator {
@@ -11,9 +11,9 @@ class RouteGenerator {
           builder: (context) => const Login(),
         );
 
-      case '/mock':
+      case '/home':
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => HomeView(),
         );
 
       default:
