@@ -1,16 +1,35 @@
+import 'package:desafio_mobile/constants/size_config.dart';
 import 'package:desafio_mobile/widgets/card_name.dart';
 import 'package:desafio_mobile/widgets/top_bar_menu.dart';
 import 'package:flutter/material.dart';
-import '../constants/images.dart';
-import '../constants/size_config.dart';
+import '../constants/strings.dart';
+import '../constants/styling.dart';
 import '../viewmodels/home_viewmodel.dart';
 import '../widgets/card_section.dart';
 import '../widgets/drawer_menu.dart';
+import 'webview_screen.dart';
+import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends StatelessWidget {
   final HomeViewModel viewModel = HomeViewModel();
 
   HomeView({super.key});
+
+  void _openWebView(BuildContext context) async {
+    const url = 'https://www.google.com';
+    if (kIsWeb) {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url), webOnlyWindowName: '_blank');
+      }
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => const WebViewScreen(url: url),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +45,19 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Cotar e Contratar",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 12),
+                  const Text("Cotar e Contratar", style: AppTheme.titulo),
+                  SizedBox(height: SizeConfig.heightMultiplier * 2),
                   SizedBox(
                     height: 90,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      itemCount: viewModel.cotarOpcoes.length,
+                      itemCount: viewModel
+                          .cotarOpcoes(onAutoTap: () => _openWebView(context))
+                          .length,
                       separatorBuilder: (context, index) =>
-                          const SizedBox(width: 16),
-                      itemBuilder: (context, index) =>
-                          viewModel.cotarOpcoes[index],
+                          const SizedBox(width: 10),
+                      itemBuilder: (context, index) => viewModel.cotarOpcoes(
+                          onAutoTap: () => _openWebView(context))[index],
                     ),
                   ),
                 ],
@@ -50,27 +67,18 @@ class HomeView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: const [
-                  Text("Minha Família",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
+                  Text("Minha Família", style: AppTheme.titulo),
                   SizedBox(height: 12),
                   SectionCard(
                     icon: Icons.add_circle_outline,
-                    text:
-                        "Adicione aqui membros da sua família e compartilhe os seguros com eles.",
+                    text: Strings.family,
                   ),
                   SizedBox(height: 24),
-                  Text("Contratados",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
+                  Text("Contratados", style: AppTheme.titulo),
                   SizedBox(height: 12),
                   SectionCard(
                     icon: Icons.sentiment_dissatisfied,
-                    text: "Você ainda não possui seguros contratados.",
+                    text: Strings.noEnsuranse,
                   ),
                 ],
               ),

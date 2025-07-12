@@ -13,38 +13,48 @@ class SocialBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          Strings.social,
-          style: AppTheme.labelText,
-        ),
-        SizedBox(height: SizeConfig.heightMultiplier * 2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              Images.icoGoogle,
-              height: SizeConfig.heightMultiplier * 3,
-              color: AppTheme.corContainer,
-            ),
-            SizedBox(width: SizeConfig.widthMultiplier * 5),
-            SvgPicture.asset(
-              Images.icoFb,
-              height: SizeConfig.heightMultiplier * 3,
-              color: AppTheme.corContainer,
-            ),
-            SizedBox(width: SizeConfig.widthMultiplier * 5),
-            SvgPicture.asset(
-              Images.icoTwitter,
-              height: SizeConfig.heightMultiplier * 3,
-              color: AppTheme.corContainer,
-            ),
-            SizedBox(width: SizeConfig.widthMultiplier * 5),
-          ],
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            Strings.social,
+            style: AppTheme.labelText,
+          ),
+          SizedBox(height: SizeConfig.heightMultiplier * 2),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: SvgPicture.asset(
+                  Images.icoGoogle,
+                  height: SizeConfig.heightMultiplier * 3,
+                  color: AppTheme.corContainer,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: SvgPicture.asset(
+                  Images.icoFb,
+                  height: SizeConfig.heightMultiplier * 3,
+                  color: AppTheme.corContainer,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: SvgPicture.asset(
+                  Images.icoTwitter,
+                  height: SizeConfig.heightMultiplier * 3,
+                  color: AppTheme.corContainer,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

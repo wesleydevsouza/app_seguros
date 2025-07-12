@@ -15,11 +15,14 @@ class CardLogin extends StatefulWidget {
 
 class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
   int _selectedTab = 0;
+  double sizedBoxHeight = SizeConfig.screenHeight < 950
+      ? SizeConfig.screenWidth * 0.85
+      : SizeConfig.screenWidth * 0.35;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.85,
+      width: sizedBoxHeight,
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: AppTheme.corCard,

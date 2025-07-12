@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../constants/images.dart';
-import '../constants/size_config.dart';
 
 class TopBarMenu extends StatelessWidget {
   const TopBarMenu({super.key});
@@ -21,14 +20,11 @@ class TopBarMenu extends StatelessWidget {
         // Logo
         Image.asset(
           Images.logo,
-          width: SizeConfig.widthMultiplier * 30,
+          width: 120,
         ),
-        // Notificações
         IconButton(
           icon: const Icon(Icons.notifications_none, color: Colors.white),
-          onPressed: () {
-            // ação para notificações
-          },
+          onPressed: () {},
         ),
       ],
     );

@@ -15,7 +15,7 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = size ?? SizeConfig.widthMultiplier * 15;
+    double buttonSize = size ?? 60;
 
     return Center(
       child: Container(

@@ -6,7 +6,6 @@ import 'package:desafio_mobile/widgets/card_login.dart';
 import 'package:desafio_mobile/widgets/default_button.dart';
 import 'package:desafio_mobile/widgets/social_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../constants/strings.dart';
 
 class Login extends StatefulWidget {
@@ -44,7 +43,7 @@ class _LoginState extends State<Login> {
                             alignment: Alignment.centerLeft,
                             child: Image.asset(
                               Images.logo,
-                              width: SizeConfig.widthMultiplier * 30,
+                              width: 140,
                             ),
                           ),
                         ),

@@ -6,6 +6,10 @@ class Strings {
   static const String register = "Cadastrar";
   static const String login = "Entrar";
   static const String social = "Acesse através das redes sociais";
+  static const String family =
+      "Adicione aqui membros da sua família e compartilhe os seguros com eles.";
+  static const String noEnsuranse =
+      "Você ainda não possui seguros contratados.";
   static const String description =
       "Aqui você gerencia seus seguros e de seus familiares em poucos cliques!";
 }
