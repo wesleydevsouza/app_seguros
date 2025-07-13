@@ -7,7 +7,18 @@ import 'login_form.dart';
 import 'register_form.dart';
 
 class CardLogin extends StatefulWidget {
-  const CardLogin({super.key});
+  final int selectedTab;
+  final void Function(int)? onTabChanged;
+  final GlobalKey<LoginFormState>? loginFormKey;
+  final GlobalKey<RegisterFormState>? registerFormKey;
+
+  const CardLogin({
+    super.key,
+    required this.selectedTab,
+    this.onTabChanged,
+    this.loginFormKey,
+    this.registerFormKey,
+  });
 
   @override
   State<CardLogin> createState() => _CardLoginState();
@@ -15,9 +26,15 @@ class CardLogin extends StatefulWidget {
 
 class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
   int _selectedTab = 0;
-  double sizedBoxHeight = SizeConfig.screenHeight < 950
+  double sizedBoxHeight = SizeConfig.screenWidth < 950
       ? SizeConfig.screenWidth * 0.85
       : SizeConfig.screenWidth * 0.35;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTab = widget.selectedTab;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +54,12 @@ class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
           TabBar(
             onTap: (index) {
               FocusScope.of(context).unfocus();
-              setState(() {
-                _selectedTab = index;
-              });
+              widget.onTabChanged?.call(index);
             },
             controller: TabController(
               length: 2,
               vsync: this,
-              initialIndex: _selectedTab,
+              initialIndex: widget.selectedTab,
             ),
             isScrollable: true,
             tabAlignment: TabAlignment.start,
@@ -65,9 +80,9 @@ class _CardLoginState extends State<CardLogin> with TickerProviderStateMixin {
             duration: const Duration(milliseconds: 200),
             transitionBuilder: (child, animation) =>
                 FadeTransition(opacity: animation, child: child),
-            child: _selectedTab == 0
-                ? const LoginForm(key: ValueKey(0))
-                : const RegisterForm(key: ValueKey(1)),
+            child: widget.selectedTab == 0
+                ? LoginForm(key: widget.loginFormKey)
+                : RegisterForm(key: widget.registerFormKey),
           ),
           SizedBox(height: SizeConfig.heightMultiplier * 2),
         ],

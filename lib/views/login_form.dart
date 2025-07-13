@@ -12,7 +12,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool lembrar = false;
-  final TextEditingController cpfController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
 
   @override
@@ -20,9 +20,9 @@ class _LoginFormState extends State<LoginForm> {
     return Column(
       children: [
         DefaultTextField(
-          controller: cpfController,
-          label: 'CPF',
-          textInputType: TextInputType.number,
+          controller: emailController,
+          label: 'E-mail',
+          textInputType: TextInputType.emailAddress,
         ),
         SizedBox(height: SizeConfig.heightMultiplier * 1),
         DefaultTextField(

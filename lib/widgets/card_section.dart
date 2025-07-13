@@ -7,11 +7,20 @@ class SectionCard extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const SectionCard({super.key, required this.icon, required this.text});
+  const SectionCard({
+    super.key,
+    required this.icon,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
+    double sizedBoxHeight = SizeConfig.screenWidth > 950
+        ? SizeConfig.screenWidth * 0.35
+        : SizeConfig.screenWidth * 0.85;
+
     return Container(
+      width: sizedBoxHeight,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.corCard,

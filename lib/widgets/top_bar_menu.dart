@@ -17,7 +17,6 @@ class TopBarMenu extends StatelessWidget {
             },
           ),
         ),
-        // Logo
         Image.asset(
           Images.logo,
           width: 120,

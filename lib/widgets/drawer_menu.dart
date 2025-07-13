@@ -1,110 +1,121 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/size_config.dart';
 import '../constants/styling.dart';
+import '../providers/user_provider.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: AppTheme.corCard,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-            alignment: Alignment.centerLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 12),
-                  child: Text(
-                    "Olá!",
-                    style: AppTheme.labelText,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
+    final userProvider = Provider.of<UserProvider>(context);
+
+    return FutureBuilder(
+      future: userProvider.loadUserName(),
+      builder: (context, snapshot) {
+        return Drawer(
+          backgroundColor: AppTheme.corCard,
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: Icon(
-                        Icons.account_circle,
-                        color: Colors.white,
-                        size: SizeConfig.heightMultiplier * 6,
+                    const Padding(
+                      padding: EdgeInsets.only(left: 12),
+                      child: Text(
+                        "Olá!",
+                        style: AppTheme.labelText,
+                        textAlign: TextAlign.left,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 8),
+                    Row(
                       children: [
-                        const Text(
-                          "User Teste",
-                          style: AppTheme.subTitulo,
-                        ),
-                        Text(
-                          "Minha conta",
-                          style: AppTheme.labelText.copyWith(
-                            color: AppTheme.corFonteDestaque,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: Icon(
+                            Icons.account_circle,
+                            color: Colors.white,
+                            size: SizeConfig.heightMultiplier * 6,
                           ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              userProvider.userName.isNotEmpty
+                                  ? userProvider.userName
+                                  : "Usuário",
+                              style: AppTheme.subTitulo,
+                            ),
+                            Text(
+                              "Minha conta",
+                              style: AppTheme.labelText.copyWith(
+                                color: AppTheme.corFonteDestaque,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          const Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  DrawerItem(title: "Home/Seguro"),
-                  DrawerItem(title: "Minhas Contribuições"),
-                  DrawerItem(title: "Meus Sinistros"),
-                  DrawerItem(title: "Minha Família"),
-                  DrawerItem(title: "Meus Bens"),
-                  DrawerItem(title: "Pagamentos"),
-                  DrawerItem(title: "Corretores"),
-                  DrawerItem(title: "Validar Boleto"),
-                  DrawerItem(title: "Telefones Importantes"),
-                  DrawerItem(title: "Configurações"),
-                  SizedBox(height: 8),
-                  DrawerItem(title: "Sair", isExit: true),
-                ],
               ),
-            ),
-          ),
-          Container(
-            height: SizeConfig.heightMultiplier * 15,
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: AppTheme.bgGradient,
-            ),
-            child: const Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/duvida_avatar.png'),
-                    radius: 20,
+              const Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      DrawerItem(title: "Home/Seguro"),
+                      DrawerItem(title: "Minhas Contribuições"),
+                      DrawerItem(title: "Meus Sinistros"),
+                      DrawerItem(title: "Minha Família"),
+                      DrawerItem(title: "Meus Bens"),
+                      DrawerItem(title: "Pagamentos"),
+                      DrawerItem(title: "Corretores"),
+                      DrawerItem(title: "Validar Boleto"),
+                      DrawerItem(title: "Telefones Importantes"),
+                      DrawerItem(title: "Configurações"),
+                      SizedBox(height: 8),
+                      DrawerItem(title: "Sair", isExit: true),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    "Dúvidas?\nFale com nosso time \ne tire todas as suas dúvidas.",
-                    style: AppTheme.labelText,
-                    textAlign: TextAlign.center,
-                  ),
+              ),
+              Container(
+                height: SizeConfig.heightMultiplier * 15,
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: AppTheme.bgGradient,
                 ),
-              ],
-            ),
+                child: const Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/duvida_avatar.png'),
+                        radius: 20,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Dúvidas?\nFale com nosso time \ne tire todas as suas dúvidas.",
+                        style: AppTheme.labelText,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

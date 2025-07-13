@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../constants/size_config.dart';
 import '../constants/strings.dart';
 import '../constants/styling.dart';
+import '../providers/user_provider.dart';
 
 class CardName extends StatelessWidget {
   const CardName({
@@ -10,6 +13,10 @@ class CardName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    if (userProvider.userName.isEmpty) {
+      userProvider.loadUserName();
+    }
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -22,15 +29,19 @@ class CardName extends StatelessWidget {
             child: Icon(Icons.account_circle,
                 color: Colors.white, size: SizeConfig.heightMultiplier * 6),
           ),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(Strings.welcome, style: TextStyle(color: Colors.white)),
-              Text('User Teste',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16)),
+              const Text('Bem-vindo', style: TextStyle(color: Colors.white)),
+              Text(
+                userProvider.userName.isNotEmpty
+                    ? userProvider.userName
+                    : 'Usuário',
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
             ],
           ),
         ],

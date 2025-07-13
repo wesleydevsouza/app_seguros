@@ -6,7 +6,11 @@ import 'package:desafio_mobile/widgets/card_login.dart';
 import 'package:desafio_mobile/widgets/default_button.dart';
 import 'package:desafio_mobile/widgets/social_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
 import '../constants/strings.dart';
+import 'package:desafio_mobile/widgets/login_form.dart';
+import 'package:desafio_mobile/widgets/register_form.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,6 +20,30 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  int _selectedTab = 0;
+  final GlobalKey<LoginFormState> _loginKey = GlobalKey<LoginFormState>();
+  final GlobalKey<RegisterFormState> _registerKey =
+      GlobalKey<RegisterFormState>();
+
+  void _onMainButtonPressed() {
+    if (_selectedTab == 0) {
+      _loginKey.currentState?.submit();
+    } else {
+      _registerKey.currentState?.submit();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final authProvider = Provider.of<AuthProvider>(context);
+    if (authProvider.isLoggedIn) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacementNamed('/home');
+      });
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -73,14 +101,23 @@ class _LoginState extends State<Login> {
                         Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            const CardLogin(),
+                            CardLogin(
+                              selectedTab: _selectedTab,
+                              onTabChanged: (index) {
+                                setState(() {
+                                  _selectedTab = index;
+                                });
+                              },
+                              loginFormKey: _loginKey,
+                              registerFormKey: _registerKey,
+                            ),
                             Positioned(
                               bottom: -28,
                               left: 0,
                               right: 0,
                               child: Center(
                                 child: DefaultButton(
-                                  onPressed: () {},
+                                  onPressed: _onMainButtonPressed,
                                 ),
                               ),
                             ),
