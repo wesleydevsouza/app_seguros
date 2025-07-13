@@ -32,7 +32,8 @@ class CardName extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Bem-vindo', style: TextStyle(color: Colors.white)),
+              const Text(Strings.welcome,
+                  style: TextStyle(color: Colors.white)),
               Text(
                 userProvider.userName.isNotEmpty
                     ? userProvider.userName

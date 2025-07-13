@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../constants/strings.dart';
 import '../constants/styling.dart';
 import '../providers/auth_provider.dart';
+import '../providers/remember_login_provider.dart';
 import '../utils/email_validator.dart';
 import '../utils/password_validator.dart';
 import 'button_forgot_password.dart';
@@ -24,12 +25,33 @@ class LoginFormState extends State<LoginForm> {
   final TextEditingController senhaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    final rememberProvider =
+        Provider.of<RememberLoginProvider>(context, listen: false);
+    rememberProvider.loadRememberedEmail().then((_) {
+      if (mounted) {
+        setState(() {
+          emailController.text = rememberProvider.rememberedEmail;
+        });
+      }
+    });
+  }
+
   void _login() async {
     if (!_formKey.currentState!.validate()) return;
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final rememberProvider =
+        Provider.of<RememberLoginProvider>(context, listen: false);
     final success = await authProvider.login(
       email: emailController.text.trim(),
       password: senhaController.text.trim(),
+    );
+    // Salva ou limpa o e-mail conforme o checkbox
+    await rememberProvider.setRememberedEmail(
+      emailController.text.trim(),
+      rememberProvider.remember,
     );
     if (success) {
       Navigator.of(context).pushReplacementNamed('/home');
@@ -76,6 +98,7 @@ class LoginFormState extends State<LoginForm> {
               }
               return null;
             },
+            obscureText: true,
           ),
           const LoginOptionsBlock(),
           const SizedBox(height: 10),

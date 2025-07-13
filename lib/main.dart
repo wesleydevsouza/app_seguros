@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:desafio_mobile/providers/auth_provider.dart';
 import 'package:desafio_mobile/providers/user_provider.dart';
+import 'package:desafio_mobile/providers/remember_login_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         providers: [
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_) => UserProvider()),
+          ChangeNotifierProvider(create: (_) => RememberLoginProvider()),
         ],
         child: Consumer<AuthProvider>(
           builder: (context, authProvider, _) {

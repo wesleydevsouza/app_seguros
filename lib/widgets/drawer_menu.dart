@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/size_config.dart';
+import '../constants/strings.dart';
 import '../constants/styling.dart';
 import '../providers/user_provider.dart';
+import '../providers/auth_provider.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({super.key});
@@ -96,15 +98,16 @@ class DrawerMenu extends StatelessWidget {
                 child: const Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: 8.0),
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/duvida_avatar.png'),
-                        radius: 20,
+                      padding: EdgeInsets.only(bottom: 4),
+                      child: Icon(
+                        Icons.account_circle,
+                        color: Colors.white,
+                        size: 40,
                       ),
                     ),
                     Expanded(
                       child: Text(
-                        "Dúvidas?\nFale com nosso time \ne tire todas as suas dúvidas.",
+                        Strings.drawertxt,
                         style: AppTheme.labelText,
                         textAlign: TextAlign.center,
                       ),
@@ -144,6 +147,13 @@ class DrawerItem extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context);
+        if (isExit) {
+          final authProvider =
+              Provider.of<AuthProvider>(context, listen: false);
+          authProvider.logout();
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/login', (route) => false);
+        }
       },
     );
   }

@@ -91,6 +91,7 @@ class RegisterFormState extends State<RegisterForm> {
                 }
                 return null;
               },
+              obscureText: true,
             ),
             const SizedBox(height: 20),
           ],

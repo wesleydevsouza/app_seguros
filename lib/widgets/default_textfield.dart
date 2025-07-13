@@ -22,6 +22,7 @@ class DefaultTextField extends StatelessWidget {
   final Color? activeBorderColor;
   final Color? disabledBorderColor;
   final String? Function(String?)? validator;
+  final bool obscureText;
 
   const DefaultTextField({
     super.key,
@@ -43,6 +44,7 @@ class DefaultTextField extends StatelessWidget {
     this.activeBorderColor,
     this.disabledBorderColor,
     this.validator,
+    this.obscureText = false,
   });
 
   @override
@@ -59,6 +61,7 @@ class DefaultTextField extends StatelessWidget {
       maxLength: maxLength,
       onFieldSubmitted: submitFunc,
       validator: validator,
+      obscureText: obscureText,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
           vertical: SizeConfig.heightMultiplier * 2,
